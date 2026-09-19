@@ -16,7 +16,9 @@ A regular expression is required.=
 Area @1 does not exist or is not owned by you.=
 Area closed for faction members.=
 Area closed.=
+Area counts towards the area count limit again.=
 Area does not exist.=
+Area is now exempt from the area count limit.=
 Area is open for members of: @1=
 Area opened.=
 Area protected. ID: @1=
@@ -54,6 +56,7 @@ That area doesn't exist.=
 The player "@1" does not exist.=
 Toggle an area open (anyone can interact) or closed=
 Toggle an area open/closed for members in your faction.=
+Toggle whether an area counts towards the area count limit of its owner=
 You are an area administrator ("areas" privilege).=
 You can protect areas=
 You can't protect that area.=
@@ -61,6 +64,7 @@ You can't protect that area: @1=
 You don't have the necessary privilege ("@1").=
 You don't own that area.=
 You have @1 areas.=
+You have @1 areas (+@2 not counting towards the limit).=
 
 You have been granted control over area #@1. Type /list_areas to show your areas.=
 
@@ -93,6 +97,8 @@ Can protect more, bigger areas.=
 ### internal.lua ###
 
 Area is too big.=
+
+[no limit]=
 
 Self protection is disabled or you do not have the necessary privilege.=
 

@@ -111,6 +111,10 @@ Commands
 
   * `/area_open <ID>` -- Toggle open/closed the specified area for everyone.
 
+  * `/area_no_limit <ID>` -- Toggle whether the specified area counts towards
+	the area count limit of its owner. (requires the `areas` privilege)
+	Areas that were created before this command existed still count.
+
   * `/area_faction_open <ID> <faction>` -- Toggle open/closed the specified
 	area for members of the faction. Factions are created and managed by
 	playerfactions mod.

@@ -16,7 +16,9 @@ A regular expression is required.=Ein regulärer Ausdruck ist erforderlich.
 Area @1 does not exist or is not owned by you.=Bereich @1 existiert nicht oder gehört nicht dir.
 Area closed for faction members.=Bereich für Fraktionsmitglieder geschlossen.
 Area closed.=Bereich geschlossen.
+Area counts towards the area count limit again.=Bereich zählt wieder zum Bereichslimit.
 Area does not exist.=Bereich existiert nicht.
+Area is now exempt from the area count limit.=Bereich zählt nun nicht mehr zum Bereichslimit.
 Area is open for members of: @1=Bereich ist offen für Mitglieder von: @1
 Area opened.=Bereich geöffnet.
 Area protected. ID: @1=Bereich geschützt. ID: @1
@@ -54,6 +56,7 @@ That area doesn't exist.=Dieser Bereich existiert nicht.
 The player "@1" does not exist.=Der Spieler „@1“ existiert nicht.
 Toggle an area open (anyone can interact) or closed=Schalte einen Bereich offen (jeder kann interagieren) oder geschlossen
 Toggle an area open/closed for members in your faction.=Schalte einen Bereich offen/geschlossen für Mitglieder deiner Fraktion.
+Toggle whether an area counts towards the area count limit of its owner=Schalte um, ob ein Bereich zum Bereichslimit seines Besitzers zählt
 You are an area administrator ("areas" privilege).=Du bist ein Bereichsadministrator (Berechtigung „areas“).
 You can protect areas=Du kannst Bereiche schützen.
 You can't protect that area.=Du kannst diesen Bereich nicht schützen.
@@ -61,6 +64,7 @@ You can't protect that area: @1=Du kannst diesen Bereich nicht schützen: @1
 You don't have the necessary privilege ("@1").=Du hast nicht die erforderliche Berechtigung („@1“).
 You don't own that area.=Du besitzt diesen Bereich nicht.
 You have @1 areas.=Du hast @1 Bereiche.
+You have @1 areas (+@2 not counting towards the limit).=Du hast @1 Bereiche (+@2, die nicht zum Limit zählen).
 
 You have been granted control over area #@1. Type /list_areas to show your areas.=Dir wurde die Kontrolle über Bereich #@1 gewährt. Gib /list_areas ein, um deine Bereiche anzuzeigen.
 
@@ -93,6 +97,8 @@ Can protect more, bigger areas.=Kann mehr, grössere Bereiche schützen.
 ### internal.lua ###
 
 Area is too big.=Bereich ist zu gross.
+
+[no limit]=[kein Limit]
 
 Self protection is disabled or you do not have the necessary privilege.=Selbstschutz ist deaktiviert oder du hast nicht die erforderlichen Berechtigungen.
 

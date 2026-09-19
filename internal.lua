@@ -283,14 +283,26 @@ areas:registerProtectionCondition("areas:self_protect_size", function(pos1, pos2
 	end
 end)
 
--- Check number of areas the user has and make sure it not above the max
-areas:registerProtectionCondition("areas:self_protect_count", function(pos1, pos2, name)
-	local count = 0
-	for _, area in pairs(areas.areas) do
+-- Counts the areas of a player, separated by whether they count towards the
+-- area count limit or not (areas with `no_limit` set are exempt).
+-- @return Number of areas counting towards the limit, number of exempt areas.
+function areas:countLimitedAreas(name)
+	local counted, exempt = 0, 0
+	for _, area in pairs(self.areas) do
 		if area.owner == name then
-			count = count + 1
+			if area.no_limit then
+				exempt = exempt + 1
+			else
+				counted = counted + 1
+			end
 		end
 	end
+	return counted, exempt
+end
+
+-- Check number of areas the user has and make sure it not above the max
+areas:registerProtectionCondition("areas:self_protect_count", function(pos1, pos2, name)
+	local count = areas:countLimitedAreas(name)
 	local max_areas = cached_privs.areas_high_limit and
 			areas.config.self_protection_max_areas_high or
 			areas.config.self_protection_max_areas
@@ -322,6 +334,9 @@ function areas:toString(id)
 	local children = areas:getChildren(id)
 	if #children > 0 then
 		message = message.." -> "..table.concat(children, ", ")
+	end
+	if area.no_limit then
+		message = message.." "..S("[no limit]")
 	end
 	return message
 end

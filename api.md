@@ -36,6 +36,17 @@ Protection Conditions
    * Returns `nil, nil` if `name` could not be found.
 
 
+Area count limit
+---
+
+* Areas with the field `no_limit = true` are not counted by the default
+  `areas:self_protect_count` condition. The field is optional; areas without it
+  count towards the limit. It is toggled with `/area_no_limit <ID>`.
+* `areas:countLimitedAreas(name)`
+   * Returns two numbers: the amount of areas of the player that count towards
+     the limit, and the amount of areas that are exempt from it.
+
+
 HUD
 ---
 

@@ -317,6 +317,33 @@ minetest.register_chatcommand("area_open", {
 })
 
 
+minetest.register_chatcommand("area_no_limit", {
+	params = S("<ID>"),
+	description = S("Toggle whether an area counts towards the"
+		.." area count limit of its owner"),
+	privs = areas.adminPrivs,
+	func = function(name, param)
+		local id = tonumber(param)
+		if not id then
+			return false, S("Invalid usage, see /help @1.", "area_no_limit")
+		end
+
+		local area = areas.areas[id]
+		if not area then
+			return false, S("Area does not exist.")
+		end
+
+		local no_limit = not area.no_limit
+		-- Save false as nil to avoid inflating the DB.
+		area.no_limit = no_limit or nil
+		areas:save()
+		return true, no_limit and
+			S("Area is now exempt from the area count limit.") or
+			S("Area counts towards the area count limit again.")
+	end
+})
+
+
 if areas.factions_available then
 	minetest.register_chatcommand("area_faction_open", {
 		params = S("<ID> [faction_name]"),
@@ -430,13 +457,13 @@ minetest.register_chatcommand("area_info", {
 		end
 
 		-- Area count
-		local area_num = 0
-		for id, area in pairs(areas.areas) do
-			if area.owner == name then
-				area_num = area_num + 1
-			end
+		local area_num, exempt_num = areas:countLimitedAreas(name)
+		if exempt_num > 0 then
+			table.insert(lines, S("You have @1 areas (+@2 not counting"
+				.." towards the limit).", area_num, exempt_num))
+		else
+			table.insert(lines, S("You have @1 areas.", area_num))
 		end
-		table.insert(lines, S("You have @1 areas.", area_num))
 
 		-- Area limit
 		local area_limit_line = privs.areas and
